@@ -1,0 +1,27 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        // Step 1: Initialize the pointers
+        int left = 0;
+        int right = nums.length - 1;
+
+        // Step 2: Perform binary search
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // Calculate the middle index
+            
+            // Step 3: Check if the target is at the middle
+            if (nums[mid] == target) {
+                return mid; // Target found, return index
+            }
+
+            // Step 4: Narrow down the search range
+            if (nums[mid] < target) {
+                left = mid + 1; // Target is in the right half
+            } else {
+                right = mid - 1; // Target is in the left half
+            }
+        }
+
+        // Step 5: If target is not found, return the insertion position
+        return left; // Left will point to the correct insertion index
+    }
+}
