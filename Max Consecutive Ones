@@ -1,0 +1,20 @@
+public class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int maxCount = 0;  // To store the maximum consecutive 1's
+        int currentCount = 0;  // To track the current streak of 1's
+
+        for (int num : nums) {
+            if (num == 1) {
+                // Increment the current streak
+                currentCount++;
+                // Update the maximum count
+                maxCount = Math.max(maxCount, currentCount);
+            } else {
+                // Reset the current streak if a 0 is encountered
+                currentCount = 0;
+            }
+        }
+
+        return maxCount;
+    }
+}
