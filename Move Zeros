@@ -1,0 +1,19 @@
+public class Solution {
+    public void moveZeroes(int[] nums) {
+        // Pointer to track the position of the next non-zero element
+        int nonZeroIndex = 0;
+
+        // Iterate through the array
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                // Swap the current element with the element at nonZeroIndex
+                int temp = nums[nonZeroIndex];
+                nums[nonZeroIndex] = nums[i];
+                nums[i] = temp;
+
+                // Increment the nonZeroIndex
+                nonZeroIndex++;
+            }
+        }
+    }
+}
