@@ -1,0 +1,30 @@
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int left = 1, right = getMax(nums);
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (getSum(nums, mid) <= threshold) {
+                right = mid; // Try a smaller divisor
+            } else {
+                left = mid + 1; // Increase divisor to reduce sum
+            }
+        }
+
+        return left;
+    }
+
+    // Get the maximum element in the array
+    private int getMax(int[] nums) {
+        int max = 0;
+        for (int num : nums) max = Math.max(max, num);
+        return max;
+    }
+
+    // Compute sum of ceil(nums[i] / divisor)
+    private int getSum(int[] nums, int divisor) {
+        int sum = 0;
+        for (int num : nums) sum += (num + divisor - 1) / divisor; // Equivalent to Math.ceil(num / divisor)
+        return sum;
+    }
+}
