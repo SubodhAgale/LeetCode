@@ -1,0 +1,23 @@
+import java.util.HashMap;
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count = 0, prefixSum = 0;
+        HashMap<Integer, Integer> sumMap = new HashMap<>();
+        sumMap.put(0, 1); // Base case: If prefixSum itself is k
+
+        for (int num : nums) {
+            prefixSum += num;
+            
+            // Check if (prefixSum - k) exists in map
+            if (sumMap.containsKey(prefixSum - k)) {
+                count += sumMap.get(prefixSum - k);
+            }
+            
+            // Store the current prefixSum in map
+            sumMap.put(prefixSum, sumMap.getOrDefault(prefixSum, 0) + 1);
+        }
+
+        return count;
+    }
+}
