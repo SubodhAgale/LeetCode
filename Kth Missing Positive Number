@@ -16,3 +16,21 @@ class Solution {
         return left + k; // Compute kth missing number
     }
 }
+
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int missingCount = 0, num = 1, i = 0;
+
+        while (missingCount < k) {
+            if (i < arr.length && arr[i] == num) {
+                i++; // Move to next array element
+            } else {
+                missingCount++; // Count missing numbers
+                if (missingCount == k) return num;
+            }
+            num++; // Move to next positive number
+        }
+        return -1;
+    }
+}
+
