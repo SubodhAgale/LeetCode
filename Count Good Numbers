@@ -1,0 +1,22 @@
+class Solution {
+    static final int MOD = 1_000_000_007;
+
+    private long power(long base, long exp) {
+        long result = 1;
+        while (exp > 0) {
+            if (exp % 2 == 1) {  // If exponent is odd
+                result = (result * base) % MOD;
+            }
+            base = (base * base) % MOD;  // Square the base
+            exp /= 2;  // Reduce exponent by half
+        }
+        return result;
+    }
+
+    public int countGoodNumbers(long n) {
+        long evenCount = (n + 1) / 2;  // Count of even positions
+        long oddCount = n / 2;         // Count of odd positions
+
+        return (int) ((power(5, evenCount) * power(4, oddCount)) % MOD);
+    }
+}
